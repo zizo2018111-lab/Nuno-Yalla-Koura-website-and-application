@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="شاهد البث المباشر لأهم مباريات اليوم، وتابع النتائج لحظة بلحظة على موقع نونو يلا كورة. تغطية حية للمباريات المحلية والعالمية.">
+    <meta name="keywords" content="بث مباشر, مباريات اليوم, مشاهدة مباريات, بث حي, نتائج مباشرة, live stream, football live">
+    <title>بث مباشر - نونو يلا كورة</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7794241141753129"
+     crossorigin="anonymous"></script>
+
+    <!-- Structured Data for Breadcrumbs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://nono-yalla-kora.netlify.app/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "بث مباشر",
+          "item": "https://nono-yalla-kora.netlify.app/live.html"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="brand">
+            <span class="icon">⚽</span>
+            <h1>نونو يلا كورة</h1>
+        </a>
+        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false"><span class="sr-only">Menu</span></button>
+        <div class="primary-navigation" data-visible="false">
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n-key="nav_home">الرئيسية</a></li>
+                    <li><a href="news.html" data-i18n-key="nav_news">الأخبار</a></li>
+                    <li><a href="live.html" data-i18n-key="nav_live">بث مباشر</a></li>
+                    <li><a href="todays-matches.html" data-i18n-key="nav_matches_today">مباريات اليوم</a></li>
+                </ul>
+            </nav>
+            <a href="login.html" class="login-btn" data-i18n-key="login_button">تسجيل الدخول</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+          <ol>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><span aria-current="page">بث مباشر</span></li>
+          </ol>
+        </nav>
+
+        <section class="content-section">
+            <h3 data-i18n-key="live_broadcast_title">بث مباشر للمباريات</h3>
+            <div class="video-placeholder"></div>
+            
+            <h3 data-i18n-key="all_matches_title">كل المباريات</h3>
+            <div class="matches-container detailed-matches-container" id="matches-container">
+                <!-- سيتم تحميل المباريات هنا بواسطة JavaScript -->
+                <p style="text-align: center;" data-i18n-key="loading_matches">جاري تحميل المباريات...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="language-switcher">
+            <span data-i18n-key="languages_label">اللغات:</span>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('ar')">العربية</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('en')">English</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('fr')">Français</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('es')">Español</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('de')">Deutsch</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('it')">Italiano</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('pt')">Português</a>
+        </div>
+        <div class="copyright">
+            <p data-i18n-key="copyright">&copy; 2024 نونو يلا كورة. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fetchLiveMatches = () => {
+                const config = {
+                    endpoint: 'live=all',
+                    containerId: 'matches-container',
+                    renderOptions: { showLineups: false }, // No lineups on live page
+                    noMatchesKey: 'no_live_matches'
+                };
+                fetchAndRenderMatches(config);
+            };
+
+            fetchLiveMatches();
+
+            // Set an interval to refresh matches every 60 seconds
+            setInterval(fetchLiveMatches, 60000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n-key="profile_page_title">الملف الشخصي - نونو يلا كورة</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7794241141753129"
+     crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="brand">
+            <span class="icon">⚽</span>
+            <h1>نونو يلا كورة</h1>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html" data-i18n-key="nav_home">الرئيسية</a></li>
+                <li><a href="news.html" data-i18n-key="nav_news">الأخبار</a></li>
+                <li><a href="live.html" data-i18n-key="nav_live">بث مباشر</a></li>
+                <li><a href="todays-matches.html" data-i18n-key="nav_matches_today">مباريات اليوم</a></li>
+            </ul>
+        </nav>
+        <a href="login.html" class="login-btn" data-i18n-key="login_button">تسجيل الدخول</a>
+    </header>
+
+    <main>
+        <nav aria-label="breadcrumb">
+          <ol>
+            <li><a href="index.html" data-i18n-key="nav_home">الرئيسية</a></li>
+            <li><span aria-current="page" data-i18n-key="profile_title">الملف الشخصي</span></li>
+          </ol>
+        </nav>
+
+        <section class="content-section">
+            <h3 data-i18n-key="profile_title">الملف الشخصي</h3>
+            <div class="profile-details-container" id="profile-container">
+                <!-- Profile details will be loaded here by JS -->
+                <p style="text-align: center;">جاري تحميل بيانات الملف الشخصي...</p>
+            </div>
+        </section>
+
+        <!-- New Section for Followed Matches -->
+        <section class="content-section">
+            <h3 data-i18n-key="followed_matches_title">المباريات المتابعة</h3>
+            <div class="matches-container detailed-matches-container" id="followed-matches-container">
+                <p style="text-align: center;">جاري تحميل المباريات المتابعة...</p>
+            </div>
+        </section>
+
+        <!-- New Section for Saved Articles -->
+        <section class="content-section">
+            <h3 data-i18n-key="saved_articles_title">المقالات المحفوظة</h3>
+            <div class="card-container" id="saved-articles-container">
+                <p style="text-align: center;" data-i18n-key="no_saved_articles">ليس لديك مقالات محفوظة بعد.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="language-switcher">
+            <span data-i18n-key="languages_label">اللغات:</span>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('ar')">العربية</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('en')">English</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('fr')">Français</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('es')">Español</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('de')">Deutsch</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('it')">Italiano</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('pt')">Português</a>
+        </div>
+        <div class="copyright">
+            <p data-i18n-key="copyright">&copy; 2024 نونو يلا كورة. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // This function must be global to be called by onclick
+        function handleUnfollowOnProfile(event, matchId) {
+            event.stopPropagation();
+            const button = event.currentTarget;
+            
+            // Call the global function from script.js to update localStorage
+            toggleFollowMatch(matchId, button);
+
+            // Remove the card from the DOM
+            const matchWrapper = document.querySelector(`.match-wrapper[data-match-id="${matchId}"]`);
+            if (matchWrapper) {
+                matchWrapper.remove();
+            }
+
+            // Check if the container is empty and show a message
+            const container = document.getElementById('followed-matches-container');
+            if (container && container.children.length === 0) {
+                container.innerHTML = `<p style="text-align: center;" data-i18n-key="no_followed_matches">${translations.no_followed_matches || 'أنت لا تتابع أي مباريات حالياً.'}</p>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- User Profile Info ---
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            const container = document.getElementById('profile-container');
+
+            if (loggedInUser && container) {
+                const userData = JSON.parse(loggedInUser);
+                container.innerHTML = `
+                    <div class="profile-card">
+                        <img src="${userData.picture}" alt="Profile Picture" class="profile-card-pic">
+                        <h4 class="profile-card-name">${userData.name}</h4>
+                        <p class="profile-card-email">${userData.email}</p>
+                    </div>
+                `;
+            } else {
+                // If not logged in, redirect to login page
+                window.location.href = 'login.html';
+            }
+
+            // --- Saved Articles ---
+            // A small delay to ensure translations are loaded from script.js
+            setTimeout(() => {
+                const savedArticlesContainer = document.getElementById('saved-articles-container');
+                const savedArticlesData = JSON.parse(localStorage.getItem('savedArticles')) || {};
+                const articlesArray = Object.values(savedArticlesData);
+
+                // Use the global renderNews function from script.js
+                // The third parameter (pageSize) is omitted to show all articles.
+                renderNews(articlesArray, savedArticlesContainer);
+            }, 100);
+
+            // --- Followed Matches ---
+            const fetchFollowedMatches = async () => {
+                const followedMatchesIds = JSON.parse(localStorage.getItem('followedMatches')) || [];
+                const container = document.getElementById('followed-matches-container');
+
+                if (followedMatchesIds.length === 0) {
+                    container.innerHTML = `<p style="text-align: center;" data-i18n-key="no_followed_matches">${translations.no_followed_matches || 'أنت لا تتابع أي مباريات حالياً.'}</p>`;
+                    return;
+                }
+
+                const apiKey = '961ae048e75e80dc93671cf8588e46cd';
+                const idsString = followedMatchesIds.join('-');
+                const url = `https://v3.football.api-sports.io/fixtures?ids=${idsString}`;
+
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'x-rapidapi-host': 'v3.football.api-sports.io',
+                        'x-rapidapi-key': apiKey
+                    }
+                };
+
+                try {
+                    const response = await fetch(url, options);
+                    const data = await response.json();
+
+                    if (data.response && data.response.length > 0) {
+                        container.innerHTML = ''; // Clear loading message
+                        data.response.forEach(match => {
+                            const { fixture, teams, goals } = match;
+                            let scoreOrTime = '';
+                            let statusHTML = '';
+                            let statusClass = 'upcoming';
+                            const shortStatus = fixture.status.short;
+
+                            const matchDate = new Date(fixture.date);
+                            const currentLangForDate = (localStorage.getItem('language') || 'ar');
+                            const dateOptions = { month: 'long', day: 'numeric', weekday: 'long' };
+                            const timeOptions = { hour: '2-digit', minute: '2-digit' };
+                            const dateString = matchDate.toLocaleDateString(currentLangForDate, dateOptions);
+                            const timeString = matchDate.toLocaleTimeString(currentLangForDate, timeOptions);
+
+                            if (['1H', 'HT', '2H', 'ET', 'P', 'LIVE'].includes(shortStatus)) {
+                                scoreOrTime = `${goals.home ?? 0} - ${goals.away ?? 0}`;
+                                statusClass = 'live';
+                                statusHTML = fixture.status.elapsed ? `${fixture.status.elapsed}'` : (translations.status_live || 'مباشر');
+                            } else if (['FT', 'AET', 'PEN'].includes(shortStatus)) {
+                                scoreOrTime = `${goals.home} - ${goals.away}`;
+                                statusClass = 'finished';
+                                statusHTML = translations.status_finished || 'انتهت';
+                            } else if (shortStatus === 'NS') {
+                                scoreOrTime = timeString;
+                                statusClass = 'upcoming';
+                                statusHTML = translations.status_not_started || 'لم تبدأ';
+                            } else {
+                                scoreOrTime = '-';
+                                statusClass = 'finished';
+                                statusHTML = fixture.status.long;
+                            }
+
+                            const matchWrapper = document.createElement('div');
+                            matchWrapper.className = 'match-wrapper';
+                            matchWrapper.setAttribute('data-match-id', fixture.id);
+                            
+                            matchWrapper.innerHTML = `
+                                <div class="match-card-header"><span>${dateString}</span></div>
+                                <div class="match-card">
+                                    <button class="follow-btn followed" onclick="handleUnfollowOnProfile(event, ${fixture.id})">🔔</button>
+                                    <div class="team home"><img src="${teams.home.logo}" alt="${teams.home.name}" class="team-logo"><span class="team-name">${teams.home.name}</span></div>
+                                    <div class="match-info">
+                                        <a href="match-details.html?id=${fixture.id}" class="match-score-link">
+                                            <span class="match-score">${scoreOrTime}</span>
+                                            <span class="match-status ${statusClass}">${statusHTML}</span>
+                                        </a>
+                                    </div>
+                                    <div class="team away"><img src="${teams.away.logo}" alt="${teams.away.name}" class="team-logo"><span class="team-name">${teams.away.name}</span></div>
+                                </div>
+                            `;
+                            container.appendChild(matchWrapper);
+                        });
+                    } else {
+                        container.innerHTML = `<p style="text-align: center;" data-i18n-key="no_followed_matches">${translations.no_followed_matches || 'أنت لا تتابع أي مباريات حالياً.'}</p>`;
+                    }
+                } catch (error) {
+                    console.error('Error fetching followed matches:', error);
+                    container.innerHTML = '<p style="text-align: center;">حدث خطأ أثناء تحميل المباريات.</p>';
+                }
+            };
+
+            // A small delay to ensure translations are loaded from script.js
+            setTimeout(() => {
+                fetchFollowedMatches();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

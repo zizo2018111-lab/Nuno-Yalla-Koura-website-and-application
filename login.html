@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - نونو يلا كورة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- مكتبة جوجل لتسجيل الدخول -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* تصميم خاص بصفحة تسجيل الدخول */
+        .login-container {
+            max-width: 400px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .login-container h2 { text-align: center; color: #0056b3; }
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            display: none; /* Hidden by default */
+        }
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #aaa;
+            margin: 1.5rem 0;
+        }
+        .separator::before, .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+        }
+        .separator:not(:empty)::before { margin-left: .5em; } /* margin-right in LTR */
+        .separator:not(:empty)::after { margin-right: .5em; } /* margin-left in LTR */
+
+        .signup-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .signup-link a {
+            color: #007BFF;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="login-container">
+            <h2 data-i18n-key="login_button">تسجيل الدخول</h2>
+            <div id="error-message" class="error-message"></div>
+            <form onsubmit="loginUser(event)">
+                <input type="email" id="login-email" placeholder="البريد الإلكتروني" required>
+                <input type="password" id="login-password" placeholder="كلمة المرور" data-i18n-placeholder="password_placeholder" required>
+                <button type="submit">دخول</button>
+            </form>
+
+            <div class="separator" data-i18n-key="separator_or">أو</div>
+
+            <h2 data-i18n-key="login_with_google" style="font-size: 1.2rem; margin-top: 1.5rem;">تسجيل الدخول باستخدام جوجل</h2>
+            <p data-i18n-key="login_prompt" style="text-align:center; color: #555; margin-bottom: 1.5rem; font-size: 0.9rem;">استخدم حساب جوجل الخاص بك للوصول إلى ميزات إضافية مثل متابعة المباريات.</p>
+
+            <!-- زر تسجيل الدخول بجوجل -->
+            <div id="g_id_onload"
+                 data-client_id="863432622666-ofrdg2roe5lidfokgnjrqac45uo1sih9.apps.googleusercontent.com"
+                 data-callback="handleCredentialResponse">
+            </div>
+            <div class="g_id_signin" data-type="standard" data-theme="outline" data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left" style="display: flex; justify-content: center;"></div>
+
+            <div class="signup-link">
+                <p><span data-i18n-key="create_new_account_prompt">ليس لديك حساب؟</span> <a href="signup.html" data-i18n-key="create_new_account_link">أنشئ حساباً جديداً</a></p>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

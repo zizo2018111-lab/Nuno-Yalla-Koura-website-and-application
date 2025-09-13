@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO -->
+    <meta name="description" content="تفاصيل مباراة مصر وبوركينا فاسو - التشكيلات، الأهداف، والإحصائيات الكاملة لحظة بلحظة على نونو يلا كورة.">
+    <meta name="keywords" content="مباراة مصر وبوركينا فاسو, تشكيلة منتخب مصر, أهداف المباراة, إحصائيات المباراة, تصفيات كأس العالم">
+    <title>تفاصيل مباراة مصر وبوركينا فاسو - نونو يلا كورة</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Adsense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7794241141753129" crossorigin="anonymous"></script>
+
+    <!-- Structured Data for Breadcrumbs -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://nono-yalla-kora.netlify.app/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "بث مباشر",
+          "item": "https://nono-yalla-kora.netlify.app/live.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "مصر ضد بوركينا فاسو",
+          "item": "https://nono-yalla-kora.netlify.app/match-details.html"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="brand">
+            <span class="icon">⚽</span>
+            <h1>نونو يلا كورة</h1>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="news.html">الأخبار</a></li>
+                <li><a href="live.html">بث مباشر</a></li>
+                <li><a href="todays-matches.html">مباريات اليوم</a></li>
+            </ul>
+        </nav>
+        <a href="login.html" class="login-btn">تسجيل الدخول</a>
+    </header>
+
+    <main>
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+          <ol>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="live.html">بث مباشر</a></li>
+            <li><span aria-current="page">مصر ضد بوركينا فاسو</span></li>
+          </ol>
+        </nav>
+
+        <div class="match-details-page" id="match-details-container">
+            <!-- سيتم تحميل تفاصيل المباراة هنا بواسطة JavaScript -->
+            <p style="text-align: center;">جاري تحميل تفاصيل المباراة...</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="language-switcher">
+            <span data-i18n-key="languages_label">اللغات:</span>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('ar')">العربية</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('en')">English</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('fr')">Français</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('es')">Español</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('de')">Deutsch</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('it')">Italiano</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('pt')">Português</a>
+        </div>
+        <div class="copyright">
+            <p data-i18n-key="copyright">&copy; 2024 نونو يلا كورة. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const apiKey = '961ae048e75e80dc93671cf8588e46cd';
+            const matchDetailsContainer = document.getElementById('match-details-container');
+
+            // الحصول على id المباراة من الرابط
+            const urlParams = new URLSearchParams(window.location.search);
+            const matchId = urlParams.get('id');
+
+            if (!matchId) {
+                matchDetailsContainer.innerHTML = '<h2 style="text-align: center;">لم يتم تحديد المباراة.</h2>';
+                return;
+            }
+
+            const fetchMatchDetails = async () => {
+                const fixtureUrl = `https://v3.football.api-sports.io/fixtures?id=${matchId}`;
+                const playersUrl = `https://v3.football.api-sports.io/fixtures/players?fixture=${matchId}`;
+                
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'x-rapidapi-host': 'v3.football.api-sports.io',
+                        'x-rapidapi-key': apiKey
+                    }
+                };
+
+                try {
+                    // جلب بيانات المباراة وبيانات اللاعبين في نفس الوقت لتحسين الأداء
+                    const [fixtureResponse, playersResponse] = await Promise.all([
+                        fetch(fixtureUrl, options),
+                        fetch(playersUrl, options)
+                    ]);
+
+                    const fixtureData = await fixtureResponse.json();
+                    const playersData = await playersResponse.json();
+
+                    if (fixtureData.response && fixtureData.response.length > 0) {
+                        // إنشاء خريطة لصور اللاعبين لسهولة الوصول إليها
+                        const playerPhotos = {};
+                        if (playersData.response && playersData.response.length > 0) {
+                            playersData.response.forEach(team => {
+                                team.players.forEach(player => {
+                                    playerPhotos[player.player.id] = player.player.photo;
+                                });
+                            });
+                        }
+                        renderMatchDetails(fixtureData.response[0], playerPhotos);
+                    } else {
+                        matchDetailsContainer.innerHTML = '<h2 style="text-align: center;">لم يتم العثور على تفاصيل المباراة.</h2>';
+                    }
+                } catch (error) {
+                    console.error('Error fetching match details:', error);
+                    matchDetailsContainer.innerHTML = '<p style="text-align: center;">حدث خطأ أثناء تحميل تفاصيل المباراة.</p>';
+                }
+            };
+
+            const renderMatchDetails = (match, playerPhotos) => {
+                const { fixture, teams, goals, league, events, lineups } = match; 
+
+                // --- DYNAMIC SEO & BREADCRUMB ---
+                const matchTitle = `${teams.home.name} ضد ${teams.away.name}`;
+                document.title = `${matchTitle} - نونو يلا كورة`;
+
+                // Update meta tags
+                const metaDescription = document.querySelector('meta[name="description"]');
+                if (metaDescription) {
+                    metaDescription.setAttribute('content', `تفاصيل مباراة ${matchTitle} - التشكيلات، الأهداف، والإحصائيات الكاملة لحظة بلحظة على نونو يلا كورة.`);
+                }
+                const metaKeywords = document.querySelector('meta[name="keywords"]');
+                if (metaKeywords) {
+                    metaKeywords.setAttribute('content', `مباراة ${matchTitle}, تشكيلة ${teams.home.name}, تشكيلة ${teams.away.name}, أهداف المباراة, إحصائيات المباراة, ${league.name}`);
+                }
+
+                // Update breadcrumb
+                const breadcrumbCurrent = document.querySelector('nav[aria-label="breadcrumb"] li span[aria-current="page"]');
+                if (breadcrumbCurrent) {
+                    breadcrumbCurrent.textContent = matchTitle;
+                }
+
+                // Update structured data
+                const structuredDataScript = document.querySelector('script[type="application/ld+json"]');
+                if (structuredDataScript) {
+                    try {
+                        const structuredData = JSON.parse(structuredDataScript.textContent);
+                        if (structuredData.itemListElement && structuredData.itemListElement.length > 2) {
+                            structuredData.itemListElement[2].name = matchTitle;
+                            structuredData.itemListElement[2].item = window.location.href;
+                            structuredDataScript.textContent = JSON.stringify(structuredData, null, 2);
+                        }
+                    } catch (e) {
+                        console.error("Failed to parse or update structured data", e);
+                    }
+                }
+
+                let statusClass = 'upcoming';
+                if (['FT', 'AET', 'PEN'].includes(fixture.status.short)) statusClass = 'finished';
+                if (['1H', 'HT', '2H', 'ET', 'P', 'LIVE'].includes(fixture.status.short)) statusClass = 'live';
+
+                // Highlight winner
+                let homeWinnerClass = '', awayWinnerClass = '';
+                if (statusClass === 'finished' && goals.home !== null && goals.away !== null) {
+                    if (goals.home > goals.away) {
+                        homeWinnerClass = 'winner';
+                    } else if (goals.away > goals.home) {
+                        awayWinnerClass = 'winner';
+                    }
+                }
+
+                // Live indicator
+                let statusDisplay = fixture.status.long;
+                if (statusClass === 'live') {
+                    statusDisplay = `<span class="live-text">${fixture.status.long}</span> <span class="live-indicator"></span>`;
+                }
+
+                // 1. عرض رأس المباراة
+                const headerHTML = `
+                    <section class="match-header">
+                        <div class="team team-a ${homeWinnerClass}">
+                            <img src="${teams.home.logo}" alt="${teams.home.name}" class="team-logo-large">
+                            <h2>${teams.home.name}</h2>
+                        </div>
+                        <div class="score-details">
+                            <span class="final-score">${goals.home ?? ''} - ${goals.away ?? ''}</span>
+                            <span class="match-status ${statusClass}">${statusDisplay}</span>
+                            <span class="match-tournament">${league.name} - ${league.round}</span>
+                        </div>
+                        <div class="team team-b ${awayWinnerClass}">
+                            <img src="${teams.away.logo}" alt="${teams.away.name}" class="team-logo-large">
+                            <h2>${teams.away.name}</h2>
+                        </div>
+                    </section>
+                `;
+
+                // 2. عرض التشكيلات على هيئة ملعب
+                const renderPitchAndLineups = (lineups, photos) => {
+                    if (!lineups || lineups.length < 2 || !lineups[0].startXI || lineups[0].startXI.length === 0) {
+                        return `<section class="lineups-section">
+                                    <h3 data-i18n-key="lineups_title">${translations.lineups_title || 'التشكيلات'}</h3>
+                                    <p style="text-align:center;">${translations.lineups_unavailable || 'التشكيل غير متاح حالياً لهذه المباراة.'}</p>
+                                </section>`;
+                    }
+
+                    const homeLineup = lineups[0];
+                    const awayLineup = lineups[1];
+
+                    const getPlayerMarkers = (players, isHome, teamPhotos) => {
+                        if (!players || players.length === 0) return '';
+
+                        const playersByRow = players.reduce((acc, p) => {
+                            const row = p.player.grid ? p.player.grid.split(':')[0] : '0';
+                            if (!acc[row]) acc[row] = [];
+                            acc[row].push(p);
+                            return acc;
+                        }, {});
+
+                        let markersHTML = '';
+                        for (const row in playersByRow) {
+                            const playersInRow = playersByRow[row];
+                            const rowCount = playersInRow.length;
+                            playersInRow.forEach((p, index) => {
+                                const gridY = parseInt(row);
+                                const topPercent = isHome ? (gridY * 8) + 5 : 95 - (gridY * 8);
+                                const leftPercent = (100 / (rowCount + 1)) * (index + 1);
+
+                                const photoUrl = teamPhotos[p.player.id];
+                                let markerIconHTML;
+
+                                if (photoUrl) {
+                                    markerIconHTML = `
+                                        <div class="player-photo-container">
+                                            <img src="${photoUrl}" alt="${p.player.name}" class="player-photo">
+                                            <span class="player-number-badge">${p.player.number || '?'}</span>
+                                        </div>
+                                    `;
+                                } else {
+                                    // Fallback to the colored shirt if no photo
+                                    markerIconHTML = `<div class="player-shirt">${p.player.number || '?'}</div>`;
+                                }
+
+                                markersHTML += `
+                                    <div class="player-marker" style="top: ${topPercent}%; left: ${leftPercent}%;">
+                                        ${markerIconHTML}
+                                        <span class="player-name">${p.player.name}</span>
+                                    </div>
+                                `;
+                            });
+                        }
+                        return markersHTML;
+                    };
+
+                    const renderSubstitutesList = (players) => {
+                        if (!players || players.length === 0) return '';
+                        let listHTML = `<ul>`;
+                        players.forEach(p => {
+                            listHTML += `<li><span class="player-number">${p.player.number || '?'}</span> ${p.player.name}</li>`;
+                        });
+                        listHTML += '</ul>';
+                        return listHTML;
+                    };
+
+                    const homeStarters = getPlayerMarkers(homeLineup.startXI, true, photos);
+                    const awayStarters = getPlayerMarkers(awayLineup.startXI, false, photos);
+
+                    return `
+                        <section class="lineups-section">
+                            <h3 data-i18n-key="lineups_title">${translations.lineups_title || 'التشكيلات'}</h3>
+                            
+                            <div class="pitch-view">
+                                <div class="lineup-title">${homeLineup.team.name} (${homeLineup.formation || ''}) vs ${awayLineup.team.name} (${awayLineup.formation || ''})</div>
+                                <div class="pitch">
+                                    <div class="home-team">${homeStarters}</div>
+                                    <div class="away-team">${awayStarters}</div>
+                                </div>
+                            </div>
+
+                            <div class="lineups-container">
+                                <div class="lineup-list">
+                                    <h5>${translations.substitutes || 'البدلاء'} (${homeLineup.team.name})</h5>
+                                    ${renderSubstitutesList(homeLineup.substitutes)}
+                                </div>
+                                <div class="lineup-list">
+                                    <h5>${translations.substitutes || 'البدلاء'} (${awayLineup.team.name})</h5>
+                                    ${renderSubstitutesList(awayLineup.substitutes)}
+                                </div>
+                            </div>
+                        </section>
+                    `;
+                };
+                const lineupsHTML = renderPitchAndLineups(lineups, playerPhotos);
+
+                // 3. عرض أحداث المباراة (إن وجدت)
+                let eventsHTML = '';
+                if (events && events.length > 0) {
+                    eventsHTML = '<section class="events-timeline"><h3>أحداث المباراة</h3><ul>';
+                    events.forEach(event => {
+                        let icon = '', details = '', eventClass = '';
+                        if (event.type === 'Goal') {
+                            icon = '<span class="event-icon goal-icon"></span>'; eventClass = 'goal';
+                            details = `هدف! سجله <strong>${event.player.name}</strong> (${event.team.name})`;
+                            if(event.assist.name) details += ` بمساعدة <strong>${event.assist.name}</strong>`;
+                        } else if (event.type === 'Card') {
+                            eventClass = event.detail === 'Yellow Card' ? 'card-yellow' : 'card-red';
+                            icon = `<span class="event-icon card-icon ${eventClass}"></span>`;
+                            details = `بطاقة ${event.detail === 'Yellow Card' ? 'صفراء' : 'حمراء'} لـ <strong>${event.player.name}</strong> (${event.team.name})`;
+                        } else if (event.type === 'subst') {
+                            icon = '<span class="event-icon subst-icon"></span>'; eventClass = 'substitution';
+                            details = `تبديل (${event.team.name}): دخول <strong>${event.assist.name}</strong> وخروج <strong>${event.player.name}</strong>`;
+                        }
+
+                        if(icon) {
+                            eventsHTML += `
+                                <li class="event ${eventClass}">
+                                    <span class="time">'${event.time.elapsed}${event.time.extra ? '+' + event.time.extra : ''}</span>
+                                    <span class="icon">${icon}</span>
+                                    <span class="event-details">${details}</span>
+                                </li>`;
+                        }
+                    });
+                    eventsHTML += '</ul></section>';
+                }
+
+                matchDetailsContainer.innerHTML = headerHTML + lineupsHTML + eventsHTML;
+            };
+
+            fetchMatchDetails();
+        });
+    </script>
+</body>
+</html>
