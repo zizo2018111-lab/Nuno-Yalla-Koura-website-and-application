@@ -3,43 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="أخبار كرة القدم العاجلة على نونو يلا كورة. تغطية شاملة لآخر أخبار انتقالات اللاعبين، أخبار الأهلي والزمالك، والدوريات العالمية مثل الدوري الإنجليزي والإسباني.">
-    <meta name="keywords" content="أخبار كرة القدم, أخبار رياضية, انتقالات اللاعبين, أخبار الدوري الإنجليزي, أخبار الدوري الإسباني, أخبار دوري أبطال أوروبا, أخبار الأهلي, أخبار الزمالك, أخبار محمد صلاح">
-    <title>الأخبار - نونو يلا كورة</title>
+    <title data-i18n-key="topscorers_page_title">قائمة الهدافين - نونو يلا كورة</title>
+    <meta name="description" content="تعرف على ترتيب هدافي الدوريات العالمية والمحلية. قائمة هدافي الدوري الإنجليزي، الإسباني، المصري، والمزيد على نونو يلا كورة.">
+    <meta name="keywords" content="ترتيب الهدافين, هدافي الدوري الإنجليزي, هدافي الدوري الإسباني, هدافي الدوري المصري, محمد صلاح, هالاند, ليفاندوفسكي">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="style.css">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7794241141753129"
-     crossorigin="anonymous"></script>
-
-    <!-- Structured Data for Breadcrumbs -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "الرئيسية",
-          "item": "https://nono-yalla-kora.netlify.app/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "الأخبار",
-          "item": "https://nono-yalla-kora.netlify.app/news.html"
-        }
-      ]
-    }
-    </script>
 </head>
 <body>
-
     <header>
         <a href="index.html" class="brand">
             <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="32px" height="32px"><path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M11,4.07v4.03l-4.93-2.25 C7.15,4.84,8.97,4.07,11,4.07z M4.26,8.31l4.93,2.25v2.88l-6.1,2.78C2.5,14.81,2,13.45,2,12C2,10.7,2.4,9.47,3.11,8.46 L4.26,8.31z M10,19.91v-4.03l4.93,2.25C13.85,19.16,12.03,19.93,10,19.91z M19.74,15.69l-4.93-2.25v-2.88l6.1-2.78 C21.5,9.19,22,10.55,22,12C22,13.3,21.6,14.53,20.89,15.54L19.74,15.69z"/></svg>
@@ -62,39 +35,36 @@
             <div class="search-container">
                 <input type="search" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="ابحث...">
             </div>
+            <button id="theme-toggle" class="theme-toggle-btn" title="تبديل المظهر">
+                <span class="sr-only">تبديل المظهر</span>
+            </button>
             <a href="login.html" class="login-btn" data-i18n-key="login_button">تسجيل الدخول</a>
         </div>
     </header>
-
     <main>
-        <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
           <ol>
-            <li><a href="index.html">الرئيسية</a></li>
-            <li><span aria-current="page">الأخبار</span></li>
+            <li><a href="index.html" data-i18n-key="nav_home">الرئيسية</a></li>
+            <li><span aria-current="page" data-i18n-key="topscorers_page_title">قائمة الهدافين</span></li>
           </ol>
         </nav>
-
-        <div style="text-align: center; margin: 1.5rem 0;">
-            <!-- إعلان مقالة 1" -->
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:728px;height:90px"
-                 data-ad-client="ca-pub-7794241141753129"
-                 data-ad-slot="3454073272"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
         <section class="content-section">
-            <h3 data-i18n-key="all_news_title">كل الأخبار</h3>
-            <div class="card-container" id="news-container">
-                <!-- سيتم تحميل الأخبار هنا بواسطة JavaScript -->
-                <p style="text-align: center;" data-i18n-key="news_loading">جاري تحميل الأخبار...</p>
+            <h3 data-i18n-key="topscorers_page_title">قائمة الهدافين</h3>
+            <div class="league-selector" id="league-selector-topscorers">
+                <button class="league-btn" onclick="fetchAndRenderTopScorers(39)">الدوري الإنجليزي</button>
+                <button class="league-btn" onclick="fetchAndRenderTopScorers(140)">الدوري الإسباني</button>
+                <button class="league-btn" onclick="fetchAndRenderTopScorers(135)">الدوري الإيطالي</button>
+                <button class="league-btn" onclick="fetchAndRenderTopScorers(78)">الدوري الألماني</button>
+                <button class="league-btn" onclick="fetchAndRenderTopScorers(61)">الدوري الفرنسي</button>
+                <button class="league-btn" onclick="fetchAndRenderTopScorers(233)">الدوري المصري</button>
+                <button class="league-btn" onclick="fetchAndRenderTopScorers(2)">دوري أبطال أوروبا</button>
+                <a href="leagues.html" class="league-btn">كل الدوريات...</a>
+            </div>
+            <div id="topscorers-container">
+                <p style="text-align: center;" data-i18n-key="select_league">اختر دوري لعرض قائمة الهدافين...</p>
             </div>
         </section>
     </main>
-
     <footer class="footer-placeholder">
         <div class="footer-top">
             <div class="footer-about">
@@ -147,14 +117,6 @@
             <p data-i18n-key="copyright">&copy; 2024 نونو يلا كورة. جميع الحقوق محفوظة. | <a href="privacy-policy.html" data-i18n-key="privacy_policy">سياسة الخصوصية</a> | <a href="contact.html" data-i18n-key="nav_contact">اتصل بنا</a></p>
         </div>
     </footer>
-
     <script src="script.js"></script>
-    <script>
-        // The main script.js now handles news fetching.
-        document.addEventListener('translationsLoaded', () => {
-            fetchNews(12); // Fetch 12 articles for the news page
-        });
-    </script>
-
 </body>
 </html>

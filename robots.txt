@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /profile.html
+Disallow: /.netlify/
+
+Sitemap: https://nono-yalla-kora.netlify.app/sitemap.xml

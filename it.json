@@ -43,5 +43,11 @@
     "profile_title": "Profilo",
     "separator_or": "O",
     "create_new_account_prompt": "Non hai un account?",
-    "create_new_account_link": "Crea un nuovo account"
+    "create_new_account_link": "Crea un nuovo account",
+    "footer_quick_links": "Link Rapidi",
+    "footer_keywords_title": "Parole Chiave",
+    "footer_keywords_list": "Partite di oggi, risultati partite, diretta streaming, Serie A, Premier League, Mohamed Salah, Champions League, calendario partite, risultati in diretta, highlights",
+    "nav_leagues": "Leghe",
+    "leagues_page_title": "Elenco Leghe",
+    "available_seasons": "Stagioni Disponibili"
 }

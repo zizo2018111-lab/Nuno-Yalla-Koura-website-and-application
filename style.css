@@ -1,19 +1,73 @@
+/* --- NEW: Color Variables for Theming --- */
+:root {
+  --bg-color: #f8f9fa;
+  --bg-secondary-color: #ffffff;
+  --bg-tertiary-color: #e9ecef;
+  --text-color: #212529;
+  --text-secondary-color: #6c757d;
+  --primary-color: #00529B;
+  --primary-darker-color: #003d73;
+  --border-color: #e9ecef;
+  --shadow-color-rgb: 0, 0, 0;
+  --header-bg: linear-gradient(90deg, #00529B 0%, #003d73 100%);
+  --header-text-color: #ffffff;
+  --footer-bg: #2c3e50;
+  --footer-text-color: #bdc3c7;
+  --footer-link-color: #ecf0f1;
+  --sun-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='18px' height='18px'%3E%3Cpath d='M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zm-9-8c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1v2c0 .55.45 1 1 1zm0 16c.55 0 1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1v2c0 .55.45 1 1 1zM5.64 6.36c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0L2.81 6.36c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L5.64 6.36zm12.72 12.72c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.41 1.41c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.41-1.41zM4.22 18.36c.39.39 1.02.39 1.41 0l1.41-1.41c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.41 1.41c-.39.39-.39 1.02 0 1.41s1.02.39 1.41 0zm14.14-14.14c.39.39 1.02.39 1.41 0l1.41-1.41c.39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0l-1.41 1.41c-.39.39-.39 1.02 0 1.41z'/%3E%3C/svg%3E");
+  --moon-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='18px' height='18px'%3E%3Cpath d='M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c0-3.03 2.47-5.5 5.5-5.5.04 0 .08 0 .12.01C7.6 6.9 5 9.68 5 13c0 1.65 1.35 3 3 3v-1.5c-1.1 0-2-.9-2-2z'/%3E%3C/svg%3E");
+}
+
+html[data-theme="dark"] {
+  --bg-color: #0d1117;
+  --bg-secondary-color: #161b22;
+  --bg-tertiary-color: #21262d;
+  --text-color: #c9d1d9;
+  --text-secondary-color: #8b949e;
+  --primary-color: #58a6ff;
+  --primary-darker-color: #1f6feb;
+  --border-color: #30363d;
+  --shadow-color-rgb: 0, 0, 0;
+  --header-bg: #161b22;
+  --header-text-color: #c9d1d9;
+  --footer-bg: #161b22;
+  --footer-text-color: #8b949e;
+  --footer-link-color: #c9d1d9;
+}
+
 /* --- إعدادات أساسية للصفحة --- */
 body {
     font-family: 'Cairo', sans-serif; /* استخدام الخط المستورد */
     margin: 0; /* إزالة الهوامش الافتراضية */
-    background-color: #f8f9fa; /* لون خلفية أفتح وأنعم */
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- NEW: Particle Canvas Background --- */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}
+
+/* --- NEW: Main page content wrapper --- */
+.page-content {
+    position: relative;
+    z-index: 1;
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-
 /* --- تصميم الجزء العلوي (الهيدر) --- */
 header {
-    background: linear-gradient(90deg, #00529B 0%, #003d73 100%); /* تدرج لوني أزرق حديث */
-    color: white; /* لون النص أبيض */
+    background: var(--header-bg);
+    color: var(--header-text-color);
     padding: 0.5rem 2rem; /* هوامش داخلية */
     display: flex; /* لجعل العناصر بجانب بعضها */
     justify-content: space-between; /* توزيع المسافات بين العناصر */
@@ -21,7 +75,7 @@ header {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* ظل أكثر نعومة */
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1000; 
 }
 
 /* --- تصميم شعار الموقع (الاسم والأيقونة) --- */
@@ -30,7 +84,7 @@ header {
     align-items: center;
     gap: 10px; /* مسافة 10 بكسل بين الاسم والأيقونة */
     text-decoration: none;
-    color: white;
+    color: var(--header-text-color);
 }
 
 .brand h1 {
@@ -81,6 +135,30 @@ header {
     align-items: center;
     gap: 20px;
 }
+
+/* Search container in header */
+.search-container {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.search-container input {
+    border-radius: 20px;
+    border: 1px solid transparent;
+    padding: 8px 15px;
+    background-color: rgba(255,255,255,0.2);
+    color: var(--header-text-color);
+    transition: all 0.3s ease-in-out;
+    width: 150px;
+}
+html[data-theme="dark"] .search-container input { background-color: var(--border-color); }
+.search-container input:focus {
+    width: 220px;
+    outline: none;
+    background-color: white;
+    color: #333;
+}
 /* --- تصميم قائمة التنقل --- */
 nav ul {
     margin: 0;
@@ -106,7 +184,7 @@ nav a:hover {
 /* --- تصميم زر تسجيل الدخول --- */
 .login-btn {
     background-color: #198754; /* لون أخضر جديد */
-    color: white;
+    color: #ffffff;
     padding: 8px 20px;
     border-radius: 5px;
     text-decoration: none;
@@ -116,6 +194,33 @@ nav a:hover {
 
 .login-btn:hover {
     background-color: #218838;
+}
+
+/* --- NEW: Theme Toggle Button --- */
+.theme-toggle-btn {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+html[data-theme="dark"] .theme-toggle-btn { border-color: var(--border-color); }
+.theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+html[data-theme="dark"] .theme-toggle-btn:hover { background-color: var(--bg-tertiary-color); }
+.theme-toggle-btn::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-image: var(--moon-icon);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 /* --- تصميم قسم المستخدم بعد تسجيل الدخول --- */
@@ -143,14 +248,14 @@ nav a:hover {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 2px solid white;
+    border: 2px solid var(--header-text-color);
 }
 
 .profile-name {
-    color: white;
+    color: var(--header-text-color);
     font-weight: bold;
 }
-
+html[data-theme="dark"] .profile-name { color: var(--text-color); }
 .profile-dropdown {
     display: none; /* Hidden by default */
     position: absolute;
@@ -178,13 +283,13 @@ nav a:hover {
 .profile-dropdown a {
     display: block;
     padding: 0.75rem 1.5rem;
-    color: #333;
+    color: var(--text-color);
     text-decoration: none;
     font-size: 1rem;
     transition: background-color 0.2s;
     white-space: nowrap;
 }
-
+.profile-dropdown { background-color: var(--bg-secondary-color); }
 .profile-dropdown a:hover {
     background-color: #f1f1f1;
 }
@@ -195,10 +300,15 @@ main {
     flex: 1; /* تجعل المحتوى الرئيسي يأخذ كل المساحة المتاحة لدفع الفوتر للأسفل */
 }
 
+/* اجعل خلفية المحتوى شفافة في الصفحة الرئيسية فقط */
+body:has(main > .hero) .page-content {
+    background-color: transparent;
+}
+
 /* --- تصميم خبز الميريت (Breadcrumbs) --- */
 nav[aria-label="breadcrumb"] {
     padding: 0 0 1rem 0; /* مسافة أسفل الـ breadcrumb */
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 1.5rem;
 }
 
@@ -208,7 +318,7 @@ nav[aria-label="breadcrumb"] ol {
     margin: 0;
     display: flex;
     font-size: 0.9rem;
-    color: #555;
+    color: var(--text-secondary-color);
 }
 
 nav[aria-label="breadcrumb"] li {
@@ -222,7 +332,7 @@ nav[aria-label="breadcrumb"] li + li::before {
 }
 
 nav[aria-label="breadcrumb"] a {
-    color: #00529B; /* استخدام اللون الرئيسي الجديد */
+    color: var(--primary-color);
     text-decoration: none;
 }
 
@@ -231,7 +341,7 @@ nav[aria-label="breadcrumb"] a:hover { text-decoration: underline; }
 .hero {
     text-align: center;
     padding: 2rem 1rem;
-    background-color: white;
+    background-color: var(--bg-secondary-color);
     border-radius: 8px;
     margin-bottom: 2rem;
 }
@@ -239,7 +349,7 @@ nav[aria-label="breadcrumb"] a:hover { text-decoration: underline; }
 .content-section h3 {
     text-align: center;
     font-size: 2rem;
-    color: #003d73; /* درجة أغمق من اللون الرئيسي */
+    color: var(--primary-darker-color);
     margin-bottom: 1.5rem;
 }
 
@@ -251,9 +361,9 @@ nav[aria-label="breadcrumb"] a:hover { text-decoration: underline; }
 }
 
 .card {
-    background-color: white;
+    background-color: var(--bg-secondary-color);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* ظل أنعم */
+    box-shadow: 0 4px 12px rgba(var(--shadow-color-rgb), 0.08);
     overflow: hidden;
     transition: transform 0.3s;
 }
@@ -277,7 +387,7 @@ nav[aria-label="breadcrumb"] a:hover { text-decoration: underline; }
 }
 
 .card-content a {
-    color: #00529B;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: bold;
 }
@@ -291,7 +401,7 @@ nav[aria-label="breadcrumb"] a:hover { text-decoration: underline; }
 
 .save-article-btn {
     background-color: #6c757d;
-    color: white;
+    color: #ffffff;
     border: none;
     padding: 6px 12px;
     border-radius: 5px;
@@ -302,44 +412,208 @@ nav[aria-label="breadcrumb"] a:hover { text-decoration: underline; }
 }
 
 .save-article-btn.saved, .save-article-btn:hover {
-    background-color: #00529B;
+    background-color: var(--primary-color);
 }
 
 .card-meta {
     display: flex;
     justify-content: space-between;
     font-size: 0.8rem;
-    color: #888;
+    color: var(--text-secondary-color);
     margin-top: 1rem;
     padding-top: 0.5rem;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid var(--border-color);
 }
 
 .card-meta .source {
     font-weight: bold;
     text-transform: capitalize;
 }
+
+/* --- Widgets on Homepage --- */
+.popular-leagues-widget {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    text-align: center;
+}
+
+.league-widget-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: var(--bg-secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.07);
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.league-widget-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.league-widget-item img {
+    width: 50px;
+    height: 50px;
+}
+
 /* --- تصميم الجزء السفلي (الفوتر) --- */
 footer {
-    background-color: #333;
-    color: #aaa;
+    background-color: var(--footer-bg);
+    color: var(--footer-text-color);
     text-align: center;
-    padding: 1rem;
+    padding: 2rem 1rem; /* More padding */
     width: 100%;
     box-sizing: border-box;
+    margin-top: auto; /* Pushes footer to bottom if content is short */
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    text-align: right; /* For RTL */
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+[dir="ltr"] .footer-top {
+    text-align: left;
+}
+
+.footer-about {
+    flex: 1.5;
+    min-width: 250px;
+}
+
+.footer-about .brand {
+    justify-content: flex-start; /* Align brand to start */
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    flex: 1;
+    min-width: 180px;
+}
+
+.footer-links h4 {
+    color: var(--header-text-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.7rem;
+}
+
+.footer-about p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+.footer-contact-keywords {
+    flex: 1.5;
+    min-width: 250px;
+}
+
+.footer-contact-keywords h4 {
+    color: var(--header-text-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.footer-contact-keywords p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.footer-contact-keywords a {
+    color: var(--footer-link-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-contact-keywords a:hover {
+    color: #3498db; /* A bright blue for hover */
+}
+
+.footer-keywords-list {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-secondary-color);
 }
 
 .language-switcher {
-    margin-bottom: 0.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
 }
 
 .language-switcher a {
-    color: white;
+    color: var(--footer-link-color);
     text-decoration: none;
     margin: 0 10px;
+    transition: color 0.3s;
 }
 
 .language-switcher a:hover {
+    color: var(--header-text-color);
+    text-decoration: underline;
+}
+
+.footer-ads-info {
+    padding: 1.5rem 1rem;
+    margin: 1rem auto;
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.1);
+    html[data-theme="dark"] & { background-color: rgba(255, 255, 255, 0.05); }
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.footer-ads-info h4 {
+    color: var(--header-text-color);
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+.footer-ads-info p {
+    margin: 0.3rem 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.copyright {
+    font-size: 0.9rem;
+}
+
+.copyright a {
+    color: var(--footer-link-color);
+    text-decoration: none;
+}
+
+.copyright a:hover {
     text-decoration: underline;
 }
 
@@ -354,13 +628,17 @@ footer {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 10px;
-    background-color: #e9ecef;
+    padding: 12px 15px;
+    background-color: var(--bg-tertiary-color);
     border-radius: 8px;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
+.leagues-container .league-info a {
+    text-decoration: none;
+    color: var(--primary-darker-color);
+}
 .league-header:first-of-type {
     margin-top: 0;
 }
@@ -373,7 +651,7 @@ footer {
 .league-header h4 {
     margin: 0;
     font-size: 1.2rem;
-    color: #333;
+    color: var(--text-color);
 }
 
 .match-card-link {
@@ -382,9 +660,9 @@ footer {
 }
 
 .match-card {
-    background-color: white;
+    background-color: var(--bg-secondary-color);
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(var(--shadow-color-rgb), 0.1);
     padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
@@ -393,6 +671,12 @@ footer {
     position: relative;
     padding-left: 50px; /* Space for the bell icon in RTL */
 }
+
+.league {
+    position: relative;
+    padding-left: 50px; /* Space for the bell icon in RTL */
+}
+[dir="ltr"] .league { padding-left: 1.5rem; padding-right: 50px; }
 
 [dir="ltr"] .match-card {
     padding-left: 1.5rem;
@@ -477,7 +761,7 @@ footer {
 .match-score {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #003d73; /* استخدام اللون الرئيسي الداكن */
+    color: var(--primary-darker-color);
     display: block;
 }
 
@@ -485,7 +769,7 @@ footer {
     font-size: 0.8rem;
     padding: 2px 8px;
     border-radius: 10px;
-    color: white;
+    color: #ffffff;
     font-weight: bold;
 }
 
@@ -528,28 +812,30 @@ footer {
     }
 }
 /* --- تصميم صفحة البث المباشر --- */
-.video-placeholder {
+.video-container { /* Renamed from video-placeholder */
     position: relative;
     width: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    background-color: #000;
+    background-color: #000000;
     border-radius: 8px;
     margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
+    overflow: hidden; /* To contain the iframe */
 }
-.video-placeholder::before { content: 'سيتم وضع شاشة البث المباشر هنا'; }
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 /* --- تصميم صفحة تفاصيل المباراة --- */
 .match-details-page {
-    background: linear-gradient(145deg, #ffffff, #f9fafb); /* Lighter background */
+    background: var(--bg-secondary-color);
     padding: 2rem;
     border-radius: 12px; /* Softer radius */
-    box-shadow: 0 5px 25px rgba(0,0,0,0.07); /* Softer shadow */
-    border: 1px solid #eef0f2;
+    box-shadow: 0 5px 25px rgba(var(--shadow-color-rgb), 0.07);
+    border: 1px solid var(--border-color);
 }
 
 .match-header {
@@ -558,13 +844,13 @@ footer {
     align-items: center;
     text-align: center;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .match-header .team h2 {
     margin: 0.5rem 0 0 0;
     font-size: 1.5rem;
-    color: #333;
+    color: var(--text-color);
     transition: color 0.3s;
 }
 
@@ -582,14 +868,14 @@ footer {
 .score-details .final-score {
     font-size: 3.5rem; /* Larger score */
     font-weight: 700;
-    color: #003d73;
+    color: var(--primary-darker-color);
     display: block;
     letter-spacing: -2px;
 }
 
 .score-details .match-tournament {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-secondary-color);
     display: block;
     margin-top: 0.5rem;
 }
@@ -624,7 +910,7 @@ footer {
 .lineups-section h3 {
     text-align: center;
     font-size: 2rem;
-    color: #003d73;
+    color: var(--primary-darker-color);
     margin-bottom: 1.5rem;
 }
 
@@ -638,14 +924,14 @@ footer {
 .lineup-list {
     flex: 1;
     min-width: 250px;
-    background: #f9f9f9;
+    background: var(--bg-tertiary-color);
     padding: 1rem;
     border-radius: 8px;
 }
 
 .lineup-list h4, .lineup-list h5 {
     margin-top: 0;
-    border-bottom: 2px solid #00529B;
+    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
 }
@@ -657,7 +943,7 @@ footer {
 }
 
 .player-shirt {
-    color: white;
+    color: #ffffff;
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -672,7 +958,7 @@ footer {
 
 .player-name {
     background-color: rgba(0, 0, 0, 0.7);
-    color: white;
+    color: #ffffff;
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.8rem;
@@ -687,7 +973,7 @@ footer {
 
 .lineup-list li {
     padding: 5px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
 }
 
 /* --- تصميم تشكيلة الملعب --- */
@@ -715,7 +1001,7 @@ footer {
 .pitch::before, .pitch::after {
     content: '';
     position: absolute;
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(var(--header-text-color-rgb, 255, 255, 255), 0.8);
     z-index: 1;
 }
 
@@ -755,7 +1041,7 @@ footer {
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    color: white;
+    color: #ffffff;
     border: 2px solid rgba(255, 255, 255, 0.8);
     box-shadow: 0 2px 4px rgba(0,0,0,0.4);
     font-size: 1rem;
@@ -765,7 +1051,7 @@ footer {
     position: relative;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 50%; 
     border: 2px solid white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.4);
     background-color: #e0e0e0; /* Fallback background */
@@ -783,7 +1069,7 @@ footer {
     bottom: -2px;
     right: -2px;
     background-color: rgba(0, 0, 0, 0.8);
-    color: white;
+    color: #ffffff;
     font-size: 0.7rem;
     font-weight: bold;
     border-radius: 50%;
@@ -798,7 +1084,7 @@ footer {
 
 .player-marker .player-name {
     background-color: rgba(0, 0, 0, 0.7);
-    color: white;
+    color: #ffffff;
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.7rem;
@@ -824,7 +1110,7 @@ footer {
 .events-timeline h3 {
     text-align: center;
     font-size: 2rem;
-    color: #003d73;
+    color: var(--primary-darker-color);
     margin-bottom: 1.5rem;
 }
 
@@ -834,8 +1120,7 @@ footer {
     max-width: 600px;
     margin: 0 auto;
     position: relative;
-    /* Add a timeline bar */
-    border-left: 3px solid #e9ecef;
+    border-left: 3px solid var(--border-color);
     margin-left: 25px;
 }
 
@@ -843,7 +1128,7 @@ footer {
     margin-left: 0;
     margin-right: 25px;
     border-left: none;
-    border-right: 3px solid #e9ecef;
+    border-right: 3px solid var(--border-color);
 }
 
 .events-timeline li.event {
@@ -860,8 +1145,8 @@ footer {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background-color: #adb5bd;
-    border: 3px solid #f8f9fa;
+    background-color: var(--text-secondary-color);
+    border: 3px solid var(--bg-color);
     left: -33px; /* Position on the timeline bar */
     top: 50%;
     transform: translateY(-50%);
@@ -874,7 +1159,7 @@ footer {
 
 .event .time {
     font-weight: bold;
-    color: #555;
+    color: var(--text-secondary-color);
     width: 50px;
     text-align: right;
 }
@@ -919,7 +1204,7 @@ footer {
 }
 
 .event .event-details {
-    color: #333;
+    color: var(--text-color);
 }
 
 .event.goal .event-details strong {
@@ -1074,8 +1359,8 @@ footer {
 
 .match-card-header {
     padding: 8px 15px;
-    background-color: #f8f9fa;
-    color: #6c757d;
+    background-color: var(--bg-tertiary-color);
+    color: var(--text-secondary-color);
     font-size: 0.8rem;
     font-weight: 600;
     text-align: center;
@@ -1119,7 +1404,7 @@ footer {
 .match-wrapper .team-name {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #343a40;
+    color: var(--text-color);
 }
 
 .match-wrapper .team.winner .team-name {
@@ -1157,15 +1442,46 @@ footer {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-    padding: 0 1.5rem; /* Keep padding for smooth transition */
-    background-color: #f8f9fa;
+    padding: 0 1.5rem;
+    background-color: var(--bg-tertiary-color);
 }
 
 .collapsible-lineups.expanded {
     max-height: 1000px; /* قيمة كبيرة كافية */
     padding: 1.5rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
 }
+
+/* Social Share Buttons */
+.social-share {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.social-share h4 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.social-share-buttons a {
+    display: inline-block;
+    margin: 0 8px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+}
+.social-share-buttons a:hover {
+    opacity: 0.85;
+}
+
+.share-btn-facebook { background-color: #1877F2; }
+.share-btn-twitter { background-color: #1DA1F2; }
+.share-btn-whatsapp { background-color: #25D366; }
 
 .collapsible-lineups .lineups-container {
     margin-top: 0;
@@ -1178,8 +1494,8 @@ footer {
 }
 
 .player-number {
-    background-color: #555;
-    color: white;
+    background-color: var(--text-secondary-color);
+    color: var(--bg-secondary-color);
     font-weight: bold;
     border-radius: 50%;
     width: 24px;
@@ -1192,7 +1508,7 @@ footer {
 }
 
 .player-pos {
-    color: #777;
+    color: var(--text-secondary-color);
     font-size: 0.8rem;
     margin-right: auto;
 }
@@ -1206,7 +1522,7 @@ footer {
 }
 
 .profile-card {
-    background: white;
+    background: var(--bg-secondary-color);
     padding: 2.5rem;
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
@@ -1218,18 +1534,139 @@ footer {
 .profile-card-pic {
     width: 120px;
     height: 120px;
-    border-radius: 50%;
-    border: 4px solid #00529B;
+    border-radius: 50%; 
+    border: 4px solid var(--primary-color);
     margin-bottom: 1rem;
 }
 
 .profile-card-name {
     font-size: 1.8rem;
     margin: 0.5rem 0;
-    color: #333;
+    color: var(--text-color);
 }
 
 .profile-card-email {
     font-size: 1rem;
-    color: #777;
+    color: var(--text-secondary-color);
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        width: 90%;
+        margin: 0 auto 1rem auto;
+        order: -1; /* يظهر البحث فوق القائمة في الجوال */
+    }
+    .search-container input {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #333;
+    }
+    .search-container input:focus {
+        width: 100%;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-about .brand {
+        justify-content: center;
+    }
+    .footer-top {
+        text-align: center;
+    }
+    .footer-about p {
+        max-width: 100%;
+    }
+}
+
+/* --- Standings & Top Scorers Page Styles --- */
+.league-selector {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+.league-selector button {
+    padding: 10px 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-tertiary-color);
+    cursor: pointer;
+    border-radius: 20px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.league-selector button.active, .league-selector button:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+}
+.topscorers-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.topscorers-list li {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--bg-secondary-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+    border-radius: 8px; /* Apply radius to each item for widgets */
+    margin-bottom: 0.5rem; /* Spacing for widget view */
+    box-shadow: 0 2px 4px rgba(var(--shadow-color-rgb), 0.05);
+}
+.topscorers-list li:last-child {
+    border-bottom: 1px solid var(--border-color); /* Keep border for consistency */
+    margin-bottom: 0;
+}
+.topscorers-list li:hover {
+    background-color: var(--bg-tertiary-color);
+}
+.scorer-rank {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-secondary-color);
+    width: 40px;
+    text-align: center;
+}
+.scorer-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 1rem;
+}
+.scorer-info {
+    flex-grow: 1;
+}
+.scorer-info .name {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.scorer-info .team {
+    font-size: 0.9rem;
+    color: var(--text-secondary-color);
+}
+.scorer-stats {
+    display: flex;
+    gap: 1.5rem;
+    text-align: center;
+}
+.scorer-stats div {
+    min-width: 60px;
+}
+.scorer-stats .stat-value {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--primary-darker-color);
+}
+.scorer-stats .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary-color);
 }

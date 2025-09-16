@@ -43,5 +43,11 @@
     "profile_title": "Perfil",
     "separator_or": "O",
     "create_new_account_prompt": "¿No tiene una cuenta?",
-    "create_new_account_link": "Crear una nueva cuenta"
+    "create_new_account_link": "Crear una nueva cuenta",
+    "footer_quick_links": "Enlaces Rápidos",
+    "footer_keywords_title": "Palabras Clave",
+    "footer_keywords_list": "Partidos de hoy, resultados de partidos, transmisión en vivo, La Liga, Premier League, Mohamed Salah, Champions League, horarios de partidos, resultados en vivo, resúmenes",
+    "nav_leagues": "Ligas",
+    "leagues_page_title": "Lista de Ligas",
+    "available_seasons": "Temporadas Disponibles"
 }

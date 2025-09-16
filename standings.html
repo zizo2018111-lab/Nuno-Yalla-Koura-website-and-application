@@ -3,40 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="أخبار كرة القدم العاجلة على نونو يلا كورة. تغطية شاملة لآخر أخبار انتقالات اللاعبين، أخبار الأهلي والزمالك، والدوريات العالمية مثل الدوري الإنجليزي والإسباني.">
-    <meta name="keywords" content="أخبار كرة القدم, أخبار رياضية, انتقالات اللاعبين, أخبار الدوري الإنجليزي, أخبار الدوري الإسباني, أخبار دوري أبطال أوروبا, أخبار الأهلي, أخبار الزمالك, أخبار محمد صلاح">
-    <title>الأخبار - نونو يلا كورة</title>
+    <title data-i18n-key="standings_page_title">ترتيب الدوريات - نونو يلا كورة</title>
+    <meta name="description" content="تابع ترتيب الدوريات العالمية والمحلية محدث باستمرار. ترتيب الدوري الإنجليزي، الإسباني، المصري، والمزيد على نونو يلا كورة.">
+    <meta name="keywords" content="ترتيب الدوريات, جدول الترتيب, الدوري الإنجليزي, الدوري الإسباني, الدوري الإيطالي, الدوري الألماني, الدوري المصري">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="style.css">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7794241141753129"
-     crossorigin="anonymous"></script>
-
-    <!-- Structured Data for Breadcrumbs -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "الرئيسية",
-          "item": "https://nono-yalla-kora.netlify.app/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "الأخبار",
-          "item": "https://nono-yalla-kora.netlify.app/news.html"
-        }
-      ]
-    }
-    </script>
 </head>
 <body>
 
@@ -55,7 +29,6 @@
                     <li><a href="todays-matches.html" data-i18n-key="nav_matches_today">مباريات اليوم</a></li>
                     <li><a href="standings.html" data-i18n-key="nav_standings">الترتيب</a></li>
                     <li><a href="topscorers.html" data-i18n-key="nav_top_scorers">الهدافين</a></li>
-                    <li><a href="leagues.html" data-i18n-key="nav_leagues">الدوريات</a></li>
                     <li><a href="contact.html" data-i18n-key="nav_contact">اتصل بنا</a></li>
                 </ul>
             </nav>
@@ -67,34 +40,31 @@
     </header>
 
     <main>
-        <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
           <ol>
-            <li><a href="index.html">الرئيسية</a></li>
-            <li><span aria-current="page">الأخبار</span></li>
+            <li><a href="index.html" data-i18n-key="nav_home">الرئيسية</a></li>
+            <li><span aria-current="page" data-i18n-key="standings_page_title">ترتيب الدوريات</span></li>
           </ol>
         </nav>
-
-        <div style="text-align: center; margin: 1.5rem 0;">
-            <!-- إعلان مقالة 1" -->
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:728px;height:90px"
-                 data-ad-client="ca-pub-7794241141753129"
-                 data-ad-slot="3454073272"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
         <section class="content-section">
-            <h3 data-i18n-key="all_news_title">كل الأخبار</h3>
-            <div class="card-container" id="news-container">
-                <!-- سيتم تحميل الأخبار هنا بواسطة JavaScript -->
-                <p style="text-align: center;" data-i18n-key="news_loading">جاري تحميل الأخبار...</p>
+            <h3 data-i18n-key="standings_page_title">ترتيب الدوريات</h3>
+            <div class="league-selector" id="league-selector-standings">
+                <button class="league-btn" onclick="fetchAndRenderStandings(39)">الدوري الإنجليزي</button>
+                <button class="league-btn" onclick="fetchAndRenderStandings(140)">الدوري الإسباني</button>
+                <button class="league-btn" onclick="fetchAndRenderStandings(135)">الدوري الإيطالي</button>
+                <button class="league-btn" onclick="fetchAndRenderStandings(78)">الدوري الألماني</button>
+                <button class="league-btn" onclick="fetchAndRenderStandings(61)">الدوري الفرنسي</button>
+                <button class="league-btn" onclick="fetchAndRenderStandings(233)">الدوري المصري</button>
+                <button class="league-btn" onclick="fetchAndRenderStandings(2)">دوري أبطال أوروبا</button>
+                <a href="leagues.html" class="league-btn">كل الدوريات...</a>
+            </div>
+            <div id="standings-container">
+                <p style="text-align: center;" data-i18n-key="select_league">اختر دوري لعرض الترتيب...</p>
             </div>
         </section>
     </main>
 
+    <footer>
     <footer class="footer-placeholder">
         <div class="footer-top">
             <div class="footer-about">
@@ -144,17 +114,11 @@
             <p data-i18n-key="ads_info_line3">نلتزم بالرد خلال وقت قصير وتوفير أفضل خدمة بإحترام وشفافية كاملة.</p>
         </div>
         <div class="copyright">
+            <p data-i18n-key="copyright">&copy; 2024 نونو يلا كورة. جميع الحقوق محفوظة.</p>
             <p data-i18n-key="copyright">&copy; 2024 نونو يلا كورة. جميع الحقوق محفوظة. | <a href="privacy-policy.html" data-i18n-key="privacy_policy">سياسة الخصوصية</a> | <a href="contact.html" data-i18n-key="nav_contact">اتصل بنا</a></p>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // The main script.js now handles news fetching.
-        document.addEventListener('translationsLoaded', () => {
-            fetchNews(12); // Fetch 12 articles for the news page
-        });
-    </script>
-
 </body>
 </html>

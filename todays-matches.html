@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مباريات اليوم - نونو يلا كورة</title>
-    <meta name="description" content="تابع كل مباريات اليوم، النتائج المباشرة، والتشكيلات لحظة بلحظة على موقع نونو يلا كورة.">
-    <meta name="keywords" content="مباريات اليوم, نتائج مباشرة, تشكيلات المباريات, كرة القدم اليوم, نونو يلا كورة">
+    <meta name="description" content="جدول مباريات اليوم والنتائج المباشرة. تعرف على مواعيد مباريات اليوم، القنوات الناقلة، التشكيلات، وتابع النتائج لحظة بلحظة مع نونو يلا كورة.">
+    <meta name="keywords" content="مباريات اليوم, نتائج المباريات الآن, جدول مباريات اليوم, مواعيد المباريات, تشكيلات, نتائج مباشرة, كرة القدم اليوم, نونو يلا كورة">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,15 +46,21 @@
             <h1>نونو يلا كورة</h1>
         </a>
         <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false"><span class="sr-only">Menu</span></button>
-        <div class="primary-navigation" data-visible="false">
+        <div class="primary-navigation" id="primary-navigation" data-visible="false">
             <nav>
                 <ul>
                     <li><a href="index.html" data-i18n-key="nav_home">الرئيسية</a></li>
                     <li><a href="news.html" data-i18n-key="nav_news">الأخبار</a></li>
                     <li><a href="live.html" data-i18n-key="nav_live">بث مباشر</a></li>
                     <li><a href="todays-matches.html" data-i18n-key="nav_matches_today">مباريات اليوم</a></li>
+                    <li><a href="standings.html" data-i18n-key="nav_standings">الترتيب</a></li>
+                    <li><a href="topscorers.html" data-i18n-key="nav_top_scorers">الهدافين</a></li>
+                    <li><a href="contact.html" data-i18n-key="nav_contact">اتصل بنا</a></li>
                 </ul>
             </nav>
+            <div class="search-container">
+                <input type="search" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="ابحث...">
+            </div>
             <a href="login.html" class="login-btn" data-i18n-key="login_button">تسجيل الدخول</a>
         </div>
     </header>
@@ -67,6 +73,17 @@
           </ol>
         </nav>
 
+        <div style="text-align: center; margin: 1.5rem 0;">
+            <!-- إعلان مقالة 1" -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-7794241141753129"
+                 data-ad-slot="3454073272"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
         <section class="content-section">
             <h3 data-i18n-key="today_matches_with_lineups">كل مباريات اليوم وتشكيلاتها</h3>
             <div class="matches-container detailed-matches-container" id="matches-container">
@@ -76,6 +93,12 @@
     </main>
 
     <footer>
+        <div class="footer-ads-info">
+            <h4 data-i18n-key="ads_info_title">ملاحظات حول الإعلانات</h4>
+            <p data-i18n-key="ads_info_line1">الإعلانات المعروضة متاحة على مدار 24 ساعة، ولا يتم تغييرها بشكل عشوائي إلا بطلب صاحب الإعلان.</p>
+            <p data-i18n-key="ads_info_line2">للتواصل معنا بخصوص الحجز أو الاستفسار عن الإعلانات، يرجى استخدام صفحة اتصل بنا.</p>
+            <p data-i18n-key="ads_info_line3">نلتزم بالرد خلال وقت قصير وتوفير أفضل خدمة بإحترام وشفافية كاملة.</p>
+        </div>
         <div class="language-switcher">
             <span data-i18n-key="languages_label">اللغات:</span>
             <a href="#" onclick="event.preventDefault(); changeLanguage('ar')">العربية</a>
@@ -92,6 +115,12 @@
     </footer>
 
     <script src="script.js"></script>
+    <div class="footer-ads-info">
+        <h4 data-i18n-key="ads_info_title">ملاحظات حول الإعلانات</h4>
+        <p data-i18n-key="ads_info_line1">الإعلانات المعروضة متاحة على مدار 24 ساعة، ولا يتم تغييرها بشكل عشوائي إلا بطلب صاحب الإعلان.</p>
+        <p data-i18n-key="ads_info_line2">للتواصل معنا بخصوص الحجز أو الاستفسار عن الإعلانات، يرجى استخدام صفحة اتصل بنا.</p>
+        <p data-i18n-key="ads_info_line3">نلتزم بالرد خلال وقت قصير وتوفير أفضل خدمة بإحترام وشفافية كاملة.</p>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

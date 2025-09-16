@@ -43,5 +43,8 @@
     "profile_title": "Perfil",
     "separator_or": "OU",
     "create_new_account_prompt": "Não tem uma conta?",
-    "create_new_account_link": "Criar uma nova conta"
+    "create_new_account_link": "Criar uma nova conta",
+    "footer_quick_links": "Links Rápidos",
+    "footer_keywords_title": "Palavras-chave",
+    "footer_keywords_list": "Jogos de hoje, resultados dos jogos, transmissão ao vivo, Primeira Liga, Premier League, Mohamed Salah, Liga dos Campeões, calendário de jogos, placares ao vivo, destaques"
 }

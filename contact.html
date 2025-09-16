@@ -3,40 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="أخبار كرة القدم العاجلة على نونو يلا كورة. تغطية شاملة لآخر أخبار انتقالات اللاعبين، أخبار الأهلي والزمالك، والدوريات العالمية مثل الدوري الإنجليزي والإسباني.">
-    <meta name="keywords" content="أخبار كرة القدم, أخبار رياضية, انتقالات اللاعبين, أخبار الدوري الإنجليزي, أخبار الدوري الإسباني, أخبار دوري أبطال أوروبا, أخبار الأهلي, أخبار الزمالك, أخبار محمد صلاح">
-    <title>الأخبار - نونو يلا كورة</title>
+    <title data-i18n-key="contact_page_title">اتصل بنا - نونو يلا كورة</title>
+    <meta name="robots" content="index, follow">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="style.css">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7794241141753129"
-     crossorigin="anonymous"></script>
-
-    <!-- Structured Data for Breadcrumbs -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "الرئيسية",
-          "item": "https://nono-yalla-kora.netlify.app/index.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "الأخبار",
-          "item": "https://nono-yalla-kora.netlify.app/news.html"
+    <style>
+        .contact-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
         }
-      ]
-    }
-    </script>
+        .contact-content h2 {
+            color: #003d73;
+            margin-bottom: 1.5rem;
+        }
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .contact-method {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            min-width: 250px;
+        }
+        .contact-method h3 {
+            margin-top: 0;
+            color: #00529B;
+        }
+        .contact-method a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            direction: ltr;
+            display: inline-block;
+        }
+        .contact-method a:hover {
+            color: #00529B;
+        }
+    </style>
 </head>
 <body>
 
@@ -62,19 +78,20 @@
             <div class="search-container">
                 <input type="search" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="ابحث...">
             </div>
+            <button id="theme-toggle" class="theme-toggle-btn" title="تبديل المظهر">
+                <span class="sr-only">تبديل المظهر</span>
+            </button>
             <a href="login.html" class="login-btn" data-i18n-key="login_button">تسجيل الدخول</a>
         </div>
     </header>
 
     <main>
-        <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
           <ol>
-            <li><a href="index.html">الرئيسية</a></li>
-            <li><span aria-current="page">الأخبار</span></li>
+            <li><a href="index.html" data-i18n-key="nav_home">الرئيسية</a></li>
+            <li><span aria-current="page" data-i18n-key="contact_page_title">اتصل بنا</span></li>
           </ol>
         </nav>
-
         <div style="text-align: center; margin: 1.5rem 0;">
             <!-- إعلان مقالة 1" -->
             <ins class="adsbygoogle"
@@ -85,14 +102,27 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-
-        <section class="content-section">
-            <h3 data-i18n-key="all_news_title">كل الأخبار</h3>
-            <div class="card-container" id="news-container">
-                <!-- سيتم تحميل الأخبار هنا بواسطة JavaScript -->
-                <p style="text-align: center;" data-i18n-key="news_loading">جاري تحميل الأخبار...</p>
+        <div class="contact-content">
+            <h2 data-i18n-key="contact_page_title">اتصل بنا</h2>
+            <p data-i18n-key="contact_intro">للتواصل معنا، يمكنك استخدام إحدى الطرق التالية:</p>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <h3 data-i18n-key="contact_email">البريد الإلكتروني</h3>
+                    <a href="mailto:zvzz275@gmail.com">zvzz275@gmail.com</a>
+                </div>
+                <div class="contact-method">
+                    <h3 data-i18n-key="contact_whatsapp">واتساب</h3>
+                    <a href="https://wa.me/+201279082485" target="_blank" rel="noopener noreferrer">01279082485</a>
+                </div>
             </div>
-        </section>
+        </div>
+        <div class="contact-content" style="margin-top: 2rem;">
+            <h2 data-i18n-key="ads_info_title">ملاحظات حول الإعلانات</h2>
+            <p data-i18n-key="ads_info_line1">الإعلانات المعروضة متاحة على مدار 24 ساعة، ولا يتم تغييرها بشكل عشوائي إلا بطلب صاحب الإعلان.</p>
+            <p data-i18n-key="ads_info_line2">للتواصل معنا بخصوص الحجز أو الاستفسار عن الإعلانات، يرجى استخدام صفحة اتصل بنا.</p>
+            <p data-i18n-key="ads_info_line3">نلتزم بالرد خلال وقت قصير وتوفير أفضل خدمة بإحترام وشفافية كاملة.</p>
+        </div>
     </main>
 
     <footer class="footer-placeholder">
@@ -149,12 +179,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // The main script.js now handles news fetching.
-        document.addEventListener('translationsLoaded', () => {
-            fetchNews(12); // Fetch 12 articles for the news page
-        });
-    </script>
-
 </body>
 </html>

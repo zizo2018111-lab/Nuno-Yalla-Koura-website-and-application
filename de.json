@@ -39,5 +39,11 @@
     "profile_title": "Profil",
     "separator_or": "ODER",
     "create_new_account_prompt": "Haben Sie kein Konto?",
-    "create_new_account_link": "Neues Konto erstellen"
+    "create_new_account_link": "Neues Konto erstellen",
+    "footer_quick_links": "Schnelllinks",
+    "footer_keywords_title": "Schlüsselwörter",
+    "footer_keywords_list": "Heutige Spiele, Spielergebnisse, Live-Stream, Premier League, Bundesliga, Mohamed Salah, Champions League, Spielpläne, Live-Ergebnisse, Highlights",
+    "nav_leagues": "Ligen",
+    "leagues_page_title": "Ligenliste",
+    "available_seasons": "Verfügbare Saisons"
 }

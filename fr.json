@@ -43,5 +43,11 @@
     "profile_title": "Profil",
     "separator_or": "OU",
     "create_new_account_prompt": "Vous n'avez pas de compte ?",
-    "create_new_account_link": "Créer un nouveau compte"
+    "create_new_account_link": "Créer un nouveau compte",
+    "footer_quick_links": "Liens Rapides",
+    "footer_keywords_title": "Mots-clés",
+    "footer_keywords_list": "Matchs du jour, résultats des matchs, en direct, Ligue 1, Premier League, Mohamed Salah, Ligue des Champions, calendrier des matchs, scores en direct, résumés",
+    "nav_leagues": "Ligues",
+    "leagues_page_title": "Liste des Ligues",
+    "available_seasons": "Saisons Disponibles"
 }
