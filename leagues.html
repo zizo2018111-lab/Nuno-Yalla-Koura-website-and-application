@@ -99,6 +99,55 @@
 
     <footer class="footer-placeholder">
         <!-- The footer will be dynamically loaded by script.js -->
+        <div class="footer-top">
+            <div class="footer-about">
+                <a href="index.html" class="brand">
+                    <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="32px" height="32px"><path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M11,4.07v4.03l-4.93-2.25 C7.15,4.84,8.97,4.07,11,4.07z M4.26,8.31l4.93,2.25v2.88l-6.1,2.78C2.5,14.81,2,13.45,2,12C2,10.7,2.4,9.47,3.11,8.46 L4.26,8.31z M10,19.91v-4.03l4.93,2.25C13.85,19.16,12.03,19.93,10,19.91z M19.74,15.69l-4.93-2.25v-2.88l6.1-2.78 C21.5,9.19,22,10.55,22,12C22,13.3,21.6,14.53,20.89,15.54L19.74,15.69z"/></svg>
+                    <h1>نونو يلا كورة</h1>
+                </a>
+                <p data-i18n-key="footer_welcome_message">موقع نونو يلا كورة، وجهتك الأولى لمتابعة عالم كرة القدم بشغف. نقدم لك آخر الأخبار، نتائج مباشرة، وجداول الترتيب.</p>
+            </div>
+            <div class="footer-links">
+                <h4 data-i18n-key="footer_quick_links">روابط سريعة</h4>
+                <ul>
+                    <li><a href="index.html" data-i18n-key="nav_home">الرئيسية</a></li>
+                    <li><a href="news.html" data-i18n-key="nav_news">الأخبار</a></li>
+                    <li><a href="live.html" data-i18n-key="nav_live">بث مباشر</a></li>
+                    <li><a href="todays-matches.html" data-i18n-key="nav_matches_today">مباريات اليوم</a></li>
+                    <li><a href="standings.html" data-i18n-key="nav_standings">الترتيب</a></li>
+                    <li><a href="topscorers.html" data-i18n-key="nav_top_scorers">الهدافين</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact-keywords">
+                <h4 data-i18n-key="footer_contact_info">معلومات التواصل</h4>
+                <p><span data-i18n-key="contact_email">البريد الإلكتروني</span>: <a href="mailto:zvzz275@gmail.com">zvzz275@gmail.com</a></p>
+                <p><span data-i18n-key="contact_whatsapp">واتساب</span>: <a href="https://wa.me/+201279082485" target="_blank" rel="noopener noreferrer">01279082485</a></p>
+                
+                <h4 data-i18n-key="footer_keywords_title" style="margin-top: 1.5rem;">كلمات مفتاحية</h4>
+                <p class="footer-keywords-list" data-i18n-key="footer_keywords_list">
+                    مباريات اليوم, نتائج المباريات, بث مباشر, كورة لايف, يلا شوت, ترتيب الدوري المصري, ترتيب الدوري الإنجليزي, أهداف محمد صلاح, أخبار الأهلي, أخبار الزمالك, دوري أبطال أوروبا, مواعيد المباريات, القنوات الناقلة, جدول مباريات اليوم, ملخصات المباريات, أهداف اليوم, ترتيب هدافي الدوري الإنجليزي, أخبار ريال مدريد, أخبار برشلونة, يلا كورة, كورة بلس, في الجول
+                </p>
+            </div>
+        </div>
+        <div class="language-switcher">
+            <span data-i18n-key="languages_label">اللغات:</span>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('ar')">العربية</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('en')">English</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('fr')">Français</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('es')">Español</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('de')">Deutsch</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('it')">Italiano</a>
+            <a href="#" onclick="event.preventDefault(); changeLanguage('pt')">Português</a>
+        </div>
+        <div class="footer-ads-info">
+            <h4 data-i18n-key="ads_info_title">ملاحظات حول الإعلانات</h4>
+            <p data-i18n-key="ads_info_line1">الإعلانات المعروضة متاحة على مدار 24 ساعة، ولا يتم تغييرها بشكل عشوائي إلا بطلب صاحب الإعلان.</p>
+            <p data-i18n-key="ads_info_line2">للتواصل معنا بخصوص الحجز أو الاستفسار عن الإعلانات، يرجى استخدام صفحة اتصل بنا.</p>
+            <p data-i18n-key="ads_info_line3">نلتزم بالرد خلال وقت قصير وتوفير أفضل خدمة بإحترام وشفافية كاملة.</p>
+        </div>
+        <div class="copyright">
+            <p data-i18n-key="copyright">&copy; 2024 نونو يلا كورة. جميع الحقوق محفوظة. | <a href="privacy-policy.html" data-i18n-key="privacy_policy">سياسة الخصوصية</a> | <a href="contact.html" data-i18n-key="nav_contact">اتصل بنا</a></p>
+        </div>
     </footer>
     <div class="footer-ads-info">
         <h4 data-i18n-key="ads_info_title">ملاحظات حول الإعلانات</h4>
